@@ -1,0 +1,16 @@
+pkgname=lyth-mono-term-nerd-font
+version=0.10.0
+revision=1
+depends="font-util"
+font_dirs="/usr/share/fonts/TTF"
+short_desc="Custom build of Iosevka with metric overrides and an opinionated selection of glyphs"
+maintainer="diniamo <diniamo53@gmail.com>"
+license="OFL-1.1"
+homepage="https://github.com/why-trv/LythMono"
+distfiles="https://github.com/why-trv/LythMono/releases/download/v$version/LythMonoTermNerdFont.zip"
+checksum=28c5e3657604141a5e10a1efd16f4c791163bb676998fb927a5445488448ff97
+
+do_install() {
+    vmkdir usr/share/fonts
+    cp -r TTF $DESTDIR/usr/share/fonts
+}
