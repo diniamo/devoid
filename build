@@ -1,0 +1,29 @@
+#!/bin/sh
+set -eu
+cd "$(dirname "$0")"
+
+if [ ! -d void-packages ]; then
+    echo "Not configured"
+    exit 1
+fi
+
+[ -d void-packages/hostdir/binpkgs ] && rm -r void-packages/hostdir/binpkgs
+
+if [ $# -gt 0 ]; then
+    for package in "$@"; do
+        if [ -d templates/"$package" ]; then
+            cp -r templates/"$package" void-packages/srcpkgs
+            void-packages/xbps-src pkg "$package"
+        else
+            echo "Missing package: $package"
+        fi
+    done
+else
+    cp -r templates/* void-packages/srcpkgs
+    for package in templates/*; do
+        void-packages/xbps-src pkg "$(basename "$package")"
+    done
+fi
+
+mkdir -p repo
+cp void-packages/hostdir/binpkgs/* repo

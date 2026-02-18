@@ -1,0 +1,14 @@
+#!/bin/sh
+set -eu
+cd "$(dirname "$0")"
+
+if [ -d void-packages ]; then
+    cd void-packages
+    ./xbps-src zap
+    git worktree remove --force .
+    cd ..
+fi
+
+if [ -d repo ]; then
+    rm -r repo
+fi
