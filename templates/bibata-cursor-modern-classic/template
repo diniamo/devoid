@@ -1,0 +1,15 @@
+pkgname=bibata-cursor-modern-classic
+version=2.0.7
+revision=1
+_variant=Bibata-Modern-Classic
+short_desc="Open source, compact, and material designed cursor set"
+maintainer="diniamo <diniamo53@gmail.com>"
+license="GPL-3.0-only"
+homepage="https://github.com/ful1e5/Bibata_Cursor"
+distfiles="https://github.com/ful1e5/Bibata_Cursor/releases/download/v$version/$_variant.tar.xz"
+checksum=7d3495864e5bbef02f5e77de760b2905903b63c71495a78ef6306d19a3b556d8
+
+do_install() {
+    vmkdir usr/share/icons/$_variant
+    cp -r * $DESTDIR/usr/share/icons/$_variant
+}
