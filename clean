@@ -2,13 +2,13 @@
 set -eu
 cd "$(dirname "$0")"
 
-if [ -d void-packages ]; then
+if [ -e void-packages ]; then
     cd void-packages
     ./xbps-src zap
     git worktree remove --force .
     cd ..
 fi
 
-if [ -d repo ]; then
-    rm -r repo
+if [ -e binpkgs ]; then
+    rm binpkgs
 fi
