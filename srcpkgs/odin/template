@@ -1,0 +1,41 @@
+pkgname=odin
+version=2026.02
+revision=1
+_version=${version//./-}
+_llvm_version=21
+build_style=gnu-makefile
+make_build_target=release
+hostmakedepends="llvm$_llvm_version clang$_llvm_version"
+makedepends="llvm$_llvm_version-devel"
+depends="clang$_llvm_version"
+short_desc="Data-Oriented Language for Sane Software Development"
+maintainer="diniamo <diniamo53@gmail.com>"
+license="Zlib"
+homepage="https://odin-lang.org/"
+distfiles="https://github.com/odin-lang/Odin/archive/refs/tags/dev-$_version.tar.gz"
+checksum=4b777ed50413a7f0165dfcb2c841e5555806a94d1121b6b52aaa7e5e383f063a
+archs="x86_64"
+nostrip=yes
+noshlibprovides=yes
+noverifyrdeps=yes
+
+pre_build() {
+	export CXX=/usr/bin/clang++
+}
+
+post_build() {
+	make -C vendor/stb/src
+	make -C vendor/cgltf/src
+	make -C vendor/miniaudio/src
+}
+
+do_install() {
+	vmkdir opt/$pkgname
+	cp -a odin base core shared vendor $DESTDIR/opt/$pkgname
+
+	vmkdir usr/bin
+	ln -s /opt/odin/odin $DESTDIR/usr/bin
+
+	vdoc README.md
+	vlicense LICENSE
+}
