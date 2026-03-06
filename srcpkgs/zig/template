@@ -1,0 +1,22 @@
+pkgname=zig
+version=0.15.2
+revision=1
+short_desc="Programming language designed for robustness, optimality, and clarity"
+maintainer="Orphaned <orphan@voidlinux.org>"
+license="MIT"
+homepage="https://ziglang.org"
+distfiles="https://ziglang.org/download/$version/zig-x86_64-linux-$version.tar.xz"
+checksum=02aa270f183da276e5b5920b1dac44a63f1a49e55050ebde3aecc9eb82f93239
+archs="x86_64"
+
+do_install() {
+	vbin zig
+
+	vmkdir usr/lib
+	cp -r lib $DESTDIR/usr/lib/zig
+
+	vdoc README.md
+	vdoc doc/langref.html
+	vlicense LICENSE
+}
+
