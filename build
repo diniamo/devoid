@@ -3,28 +3,24 @@ set -eu
 cd "$(dirname "$0")"
 
 if [ ! -d void-packages ]; then
-    echo "Not configured"
-    exit 1
+	git clone https://github.com/void-linux/void-packages.git
+	ln -s void-packages/hostdir/binpkgs binpkgs
 fi
 
-[ -d void-packages/hostdir/binpkgs ] && rm -r void-packages/hostdir/binpkgs
+git -C void-packages reset --hard > /dev/null
+cp -r srcpkgs/* void-packages/srcpkgs/
 
 if [ $# -gt 0 ]; then
     for package in "$@"; do
-        if [ -d srcpkgs/"$package" ]; then
-            cp -r srcpkgs/"$package" void-packages/srcpkgs
+        if [ -d "srcpkgs/$package" ]; then
             void-packages/xbps-src pkg "$package"
         else
             echo "Missing package: $package"
         fi
     done
 else
-    cp -r srcpkgs/* void-packages/srcpkgs
-    for package in srcpkgs/*; do
-        void-packages/xbps-src pkg "$(basename "$package")"
+	cd srcpkgs
+    for package in *; do
+        ../void-packages/xbps-src pkg "$package"
     done
-fi
-
-if [ ! -e binpkgs ]; then
-    ln -s void-packages/hostdir/binpkgs binpkgs
 fi
