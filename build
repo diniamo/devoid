@@ -7,20 +7,9 @@ if [ ! -d void-packages ]; then
 	ln -s void-packages/hostdir/binpkgs binpkgs
 fi
 
-git -C void-packages reset --hard > /dev/null
-cp -r srcpkgs/* void-packages/srcpkgs/
-
-if [ $# -gt 0 ]; then
-    for package in "$@"; do
-        if [ -d "srcpkgs/$package" ]; then
-            void-packages/xbps-src pkg "$package"
-        else
-            echo "Missing package: $package"
-        fi
-    done
-else
-	cd srcpkgs
-    for package in *; do
-        ../void-packages/xbps-src pkg "$package"
-    done
-fi
+git -C void-packages reset --hard >/dev/null
+for package in "$@"; do
+    [ -e "void-packages/srcpkgs/$package" ] && rm -r "void-packages/srcpkgs/$package"
+    cp -r "srcpkgs/$package" void-packages/srcpkgs/
+    void-packages/xbps-src pkg "$package"
+done
