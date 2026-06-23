@@ -1,4 +1,3 @@
-# Template file for 'alacritty'
 pkgname=alacritty
 version=0.17.0
 commit=2b1589687d54501f268dfeeafc98ee9aa12c2175
