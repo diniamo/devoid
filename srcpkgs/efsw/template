@@ -1,0 +1,21 @@
+pkgname=efsw
+version=20260622
+_commit=0708c5576a9b8e0edd1f841b1f574c06da3e4615
+revision=1
+build_style=cmake
+short_desc="Cross-platform file system watcher and notifier"
+maintainer="diniamo <diniamo53@gmail.com>"
+license="MIT"
+homepage="https://github.com/SpartanJ/efsw"
+distfiles="https://github.com/SpartanJ/efsw/archive/${_commit}.tar.gz"
+checksum=963a867ea9c8ccc3ae0ac9763cd4c12c7331eb8dd6ff659d6d3ab0f482d8f704
+
+efsw-devel_package() {
+	depends="${sourcepkg}>=${version}_${revision}"
+	short_desc+=" - development files"
+
+	pkg_install() {
+		vmove usr/include
+		vmove usr/lib/cmake
+	}
+}

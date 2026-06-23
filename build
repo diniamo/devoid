@@ -2,14 +2,18 @@
 set -eu
 cd "$(dirname "$0")"
 
-if [ ! -d void-packages ]; then
+if [ -e void-packages ]; then
+	git -C void-packages reset --hard >/dev/null
+else
 	git clone https://github.com/void-linux/void-packages.git
 	ln -s void-packages/hostdir/binpkgs binpkgs
 fi
 
-git -C void-packages reset --hard >/dev/null
+for package in srcpkgs/*; do
+    [ -e "void-packages/$package" ] && rm -r "void-packages/$package"
+    cp -r "$package" void-packages/srcpkgs/
+done
+
 for package in "$@"; do
-    [ -e "void-packages/srcpkgs/$package" ] && rm -r "void-packages/srcpkgs/$package"
-    cp -r "srcpkgs/$package" void-packages/srcpkgs/
     void-packages/xbps-src pkg "$package"
 done
