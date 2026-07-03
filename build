@@ -2,7 +2,10 @@
 set -eu
 cd "$(dirname "$0")"
 
-if [ ! -d void-packages ]; then
+if [ -e void-packages ]; then
+	git -C void-packages reset --hard >/dev/null
+	void-packages/xbps-src clean
+else
 	git clone https://github.com/void-linux/void-packages.git
 	ln -s void-packages/hostdir/binpkgs binpkgs
 fi
