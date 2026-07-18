@@ -1,7 +1,7 @@
 pkgname=mpv
 version=0.42.0.git
-commit=2ad46a3c3cb57538b1e9bfb84276f76468cd0e39
-revision=1
+revision=3
+_commit=0fb136f685c21ec10943f682bec1c90220d2d90f
 build_style=meson
 configure_args="-Dcdda=enabled -Ddvbin=enabled -Ddvdnav=enabled
  -Dlibmpv=true -Dcplugins=enabled
@@ -38,8 +38,8 @@ maintainer="diniamo <diniamo53@proton.me>"
 license="GPL-2.0-or-later"
 homepage="https://mpv.io"
 changelog="https://github.com/mpv-player/mpv/releases"
-distfiles="https://github.com/mpv-player/mpv/archive/${commit}.tar.gz"
-checksum=9585e14d14bd649676e95199f540bfcd3d55655fe4fca4eef0794adb1fa730ec
+distfiles="https://github.com/mpv-player/mpv/archive/${_commit}.tar.gz"
+checksum=f0d98a50365e72ef2caf9980f3982a240bf91e6c7361d8a0ccb7ed1c0850b892
 python_version=3
 
 build_options="alsa caca jack javascript lcms lua openal pulseaudio pipewire sndio
