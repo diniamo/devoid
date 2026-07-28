@@ -1,0 +1,24 @@
+pkgname=iv
+version=20260728
+revision=1
+_commit=a1da851d5dc82a7f705a9895d503e94bd83deb4b
+hostmakedepends="odin glslang"
+makedepends="SDL3-devel SDL3_image-devel"
+short_desc="Cross-platform image viewer in Odin, SDL3 and Vulkan."
+maintainer="diniamo <diniamo53@proton.me>"
+license="EUPL"
+homepage="https://github.com/diniamo/iv/"
+distfiles="https://github.com/diniamo/iv/archive/$_commit.tar.gz"
+checksum=6a4ea697820c732a0bc099913b307d7a72e0cdbcb76f7e24e23de4d68cc13655
+nopie=yes
+
+do_build() {
+	./build.sh
+}
+
+do_install() {
+	vbin build/iv
+	vdoc README.md
+	vlicense LICENSE
+}
+
