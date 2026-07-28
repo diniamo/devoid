@@ -1,7 +1,7 @@
 pkgname=shoot
-version=20260703
+version=20260728
 revision=1
-_commit=dbc9288a790cf01d4b6aed0e1a598cc278947bb2
+_commit=f9df4da1442c6fe0d40ae1429622b6758c5bbe52
 hostmakedepends="odin"
 makedepends="libpng-devel"
 short_desc="Compositor-independant screenshot tool for Wayland with support for capturing the active output, active toplevel or a selection."
@@ -9,7 +9,7 @@ maintainer="diniamo <diniamo53@proton.me>"
 license="EUPL"
 homepage="https://github.com/diniamo/shoot/"
 distfiles="https://github.com/diniamo/shoot/archive/$_commit.tar.gz"
-checksum=e4dc91dc7794a31e2de985861db3aab58f123e595dc3d089604dd90196dcad6d
+checksum=589f70517e6612b5e4857931c1293a59f85d2a1721ebcb13381f40a23f1470ce
 nopie=yes
 
 do_build() {
@@ -18,4 +18,6 @@ do_build() {
 
 do_install() {
 	vbin shoot
+	vdoc README.md
+	vlicense LICENSE
 }
