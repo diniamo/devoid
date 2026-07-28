@@ -1,5 +1,5 @@
 pkgname=odin
-version=2026.06
+version=2026.07a
 revision=1
 _llvm_version=21
 build_style=gnu-makefile
@@ -12,7 +12,7 @@ maintainer="diniamo <diniamo53@proton.me>"
 license="Zlib"
 homepage="https://odin-lang.org/"
 distfiles="https://github.com/odin-lang/Odin/archive/refs/tags/dev-${version//./-}.tar.gz"
-checksum=9f91df15e06e782bdd2825926efc256ad1a79b3e022a1398e4e10dcc4d4d95fa
+checksum=8f4f02fd9a3426b441cd0dfbe0aca1b95fd93c95d86940fcb4417ef6044c83cd
 nostrip=yes
 noshlibprovides=yes
 noverifyrdeps=yes
