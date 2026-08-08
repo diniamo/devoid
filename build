@@ -10,8 +10,11 @@ else
 	ln -s void-packages/hostdir/binpkgs binpkgs
 fi
 
+cd void-packages/srcpkgs
+ls ../../srcpkgs | xargs rm -rf
+cd ../..
+cp -r srcpkgs/* void-packages/srcpkgs
+
 for package in "$@"; do
-    [ -e void-packages/srcpkgs/$package ] && rm -r void-packages/srcpkgs/$package
-    cp -r srcpkgs/$package* void-packages/srcpkgs/
-    void-packages/xbps-src pkg $package
+	void-packages/xbps-src pkg "$package"
 done
